@@ -1,4 +1,4 @@
-from chordinversions.modules.constants import KEYS
+from chordinversions.constants import KEYS
 
 
 def get_note_name(note: int, keys: dict[int, str] = None) -> str:

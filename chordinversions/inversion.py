@@ -1,6 +1,6 @@
 from typing import NamedTuple
 
-from chordinversions.modules.auxiliary import get_note_name
+from chordinversions.auxiliary import get_note_name
 
 
 class ChordInversion(NamedTuple):

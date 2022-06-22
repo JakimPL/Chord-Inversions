@@ -7,8 +7,8 @@ from music21.note import Note
 from music21.note import Rest
 from music21.stream import Stream
 
-from chordinversions.modules.converter import to_audio
-from chordinversions.modules.inversion import ChordInversion
+from chordinversions.converter import to_audio
+from chordinversions.inversion import ChordInversion
 
 SOUNDFONT_PATH = os.path.join(os.getcwd(), 'soundfont', 'st_concert.sf2')
 AUDIO_FORMAT = 'wav'
@@ -57,11 +57,10 @@ class Exporter:
             json.dump(chord_inversion._asdict(), file)
 
     @staticmethod
-    def _export_audio(chord_midi_path: str, chord_audio_directory: str):
-        chord_audio_path = os.path.join(chord_audio_directory, 'chord.{fmt}'.format(fmt=AUDIO_FORMAT))
+    def _export_audio(chord_midi_path: str, chord_audio_path: str):
         to_audio(SOUNDFONT_PATH, chord_midi_path, chord_audio_path, out_type=AUDIO_FORMAT)
         if CONVERT_TO_MP3:
-            chord_mp3_path = os.path.join(chord_audio_directory, 'chord.mp3')
+            chord_mp3_path = f'{chord_audio_path[:chord_audio_path.rfind(AUDIO_FORMAT)]}mp3'
             sound = pydub.AudioSegment.from_wav(chord_audio_path)
             sound.export(chord_mp3_path, format='mp3')
 

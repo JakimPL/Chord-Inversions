@@ -2,8 +2,8 @@ import random
 from collections import OrderedDict
 from typing import Union
 
-from chordinversions.modules.constants import CHORDS, LOWEST_NOTE, HIGHEST_NOTE
-from chordinversions.modules.inversion import ChordInversion
+from chordinversions.constants import CHORDS, LOWEST_NOTE, HIGHEST_NOTE
+from chordinversions.inversion import ChordInversion
 
 
 def generate_chord_inversions(chord: tuple[int, ...]) -> list[tuple[int, ...]]:

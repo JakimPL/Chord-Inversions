@@ -10,7 +10,7 @@ setuptools.setup(
     description="A simple chord inversions generator with MIDI export and WAV/MP3 export options",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=setuptools.find_packages(include=["chordinversions", "generator.py"]),
+    packages=setuptools.find_packages(include=["chordinversions"]),
     license="GNU General Public License v3.0",
     classifiers=[
         "Programming Language :: Python :: 3",
