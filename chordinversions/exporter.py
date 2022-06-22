@@ -1,5 +1,6 @@
 import json
 import os
+import pathlib
 
 import pydub
 from music21.chord import Chord
@@ -60,7 +61,7 @@ class Exporter:
     def _export_audio(chord_midi_path: str, chord_audio_path: str):
         to_audio(SOUNDFONT_PATH, chord_midi_path, chord_audio_path, out_type=AUDIO_FORMAT)
         if CONVERT_TO_MP3:
-            chord_mp3_path = f'{chord_audio_path[:chord_audio_path.rfind(AUDIO_FORMAT)]}mp3'
+            chord_mp3_path = pathlib.Path(chord_audio_path).with_suffix('.mp3')
             sound = pydub.AudioSegment.from_wav(chord_audio_path)
             sound.export(chord_mp3_path, format='mp3')
 
