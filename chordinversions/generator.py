@@ -39,24 +39,31 @@ def get_random_inversion(chord: tuple[int, ...]) -> tuple[int, tuple[int, ...]]:
 
 
 def get_random_base_note(chord: tuple[int, ...], lowest_note: int = LOWEST_NOTE, highest_note: int = HIGHEST_NOTE) -> int:
+    if lowest_note > highest_note:
+        lowest_note, highest_note = highest_note, lowest_note
+
     min_note = min(chord)
     normalized_chord = [note - min_note for note in chord]
-    base = random.randint(lowest_note, highest_note - max(normalized_chord))
+    chord_range = max(normalized_chord)
+
+    real_highest_note = max(highest_note - chord_range, lowest_note + chord_range)
+    base = random.randint(lowest_note, real_highest_note)
+
     return base
 
 
-def get_random_chord_inversion(inversions: dict[str, list[ChordInversion]]) -> ChordInversion:
+def get_random_chord_inversion(inversions: dict[str, list[ChordInversion]], lowest_note: int = LOWEST_NOTE, highest_note: int = HIGHEST_NOTE) -> ChordInversion:
     chord_type = get_random_chord_type(inversions)
     inversion_index = random.randrange(len(inversions[chord_type]))
     inversion = inversions[chord_type][inversion_index]
     chord = inversion.base_chord
-    base_note = get_random_base_note(chord)
+    base_note_index = get_random_base_note(chord, lowest_note, highest_note)
 
     return ChordInversion(
         chord_type=chord_type,
         base_chord=chord,
         inversion_index=inversion_index,
-        base_note=base_note
+        base_note_index=base_note_index
     )
 
 
