@@ -3,22 +3,30 @@ import os
 import pathlib
 
 import pydub
+from chordinversions.converter import to_audio
+from chordinversions.inversion import ChordInversion
 from music21.chord import Chord
 from music21.note import Note
 from music21.note import Rest
 from music21.stream import Stream
 
-from chordinversions.converter import to_audio
-from chordinversions.inversion import ChordInversion
-
-SOUNDFONT_PATH = os.path.join(os.getcwd(), 'soundfont', 'st_concert.sf2')
+SOUNDFONT = 'st_concert.sf2'
 AUDIO_FORMAT = 'wav'
 CONVERT_TO_MP3 = True
 
 
 class Exporter:
-    def __init__(self, sequential: bool = False):
-        self._sequential: bool = sequential
+    def __init__(
+            self,
+            sequential: bool = True,
+            sf2: str = SOUNDFONT,
+            audio_format: str = AUDIO_FORMAT,
+            convert_to_mp3: bool = CONVERT_TO_MP3
+    ):
+        self.sequential: bool = sequential
+        self.soundfont_path: str = os.path.join(os.getcwd(), 'soundfont', sf2)
+        self.audio_format: str = audio_format
+        self.convert_to_mp3: str = convert_to_mp3
 
     @staticmethod
     def _add_rest(stream: Stream):
