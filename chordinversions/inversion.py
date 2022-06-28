@@ -1,7 +1,5 @@
 from typing import NamedTuple
 
-from music21.converter import Converter
-
 from chordinversions.auxiliary import get_note_name
 
 

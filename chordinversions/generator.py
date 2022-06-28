@@ -3,6 +3,7 @@ from collections import OrderedDict
 from typing import Union
 
 from chordinversions.constants import CHORDS, LOWEST_NOTE, HIGHEST_NOTE
+from chordinversions.interval import Interval
 from chordinversions.inversion import ChordInversion
 
 
@@ -63,6 +64,16 @@ def get_random_chord_inversion(inversions: dict[str, list[ChordInversion]], lowe
         chord_type=chord_type,
         base_chord=chord,
         inversion_index=inversion_index,
+        base_note_index=base_note_index
+    )
+
+
+def get_random_interval(intervals: dict[str, int], lowest_note: int = LOWEST_NOTE, highest_note: int = HIGHEST_NOTE) -> Interval:
+    interval_value = random.choice(list(intervals.values()))
+    base_note_index = get_random_base_note((0, interval_value), lowest_note, highest_note)
+
+    return Interval(
+        interval=interval_value,
         base_note_index=base_note_index
     )
 
