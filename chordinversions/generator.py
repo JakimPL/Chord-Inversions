@@ -67,7 +67,7 @@ def get_random_chord_inversion(inversions: dict[str, list[ChordInversion]], lowe
     )
 
 
-def generate_all_inversions(chords: dict[str, tuple[int, ...]] = None, reduce: bool = True) -> dict[str, list[ChordInversion]]:
+def generate_all_inversions(chords: dict[str, Union[list[int], tuple[int, ...]]] = None, reduce: bool = True) -> dict[str, list[ChordInversion]]:
     if chords is None:
         chords = CHORDS
 
