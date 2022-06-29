@@ -11,22 +11,22 @@ TEMPO = 120
 SEQUENTIAL = False
 
 
-def add_rest(stream: Stream):
+def add_rest(stream: Stream, duration: str = 'half'):
     rest = Rest()
-    rest.duration.type = 'half'
+    rest.duration.type = duration
     stream.append(rest)
 
 
-def create_sequence(iterable: list[int], stream: Stream):
+def create_sequence(iterable: list[int], stream: Stream, note_duration: str = 'quarter'):
     for note in iterable:
         note = Note(note)
-        note.duration.type = 'quarter'
+        note.duration.type = note_duration
         stream.append(note)
 
 
-def create_chord(iterable: list[int], stream: Stream):
+def create_chord(iterable: list[int], stream: Stream, duration: str = 'whole'):
     chord = Chord(iterable)
-    chord.duration.type = 'whole'
+    chord.duration.type = duration
     stream.append(chord)
 
 
@@ -39,6 +39,7 @@ def create_stream(iterable: list[int], tempo: int = TEMPO, sequential: bool = SE
     else:
         create_chord(iterable, stream)
 
+    add_rest(stream)
     return stream
 
 

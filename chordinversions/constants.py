@@ -41,5 +41,17 @@ INTERVAL_NAMES = {
     9: 'major sixth',
     10: 'minor seventh',
     11: 'major seventh',
-    12: 'octave'
+    12: 'octave',
+    13: 'minor ninth',
+    14: 'major ninth',
+    15: 'minor tenth',
+    16: 'major tenth',
+    17: 'perfect eleventh',
+    18: 'octave and tritone',
+    19: 'perfect twelfth',
+    20: 'minor thirteenth',
+    21: 'major thirteenth',
+    22: 'minor fourteenth',
+    23: 'major fourteenth',
+    24: 'double octave'
 }

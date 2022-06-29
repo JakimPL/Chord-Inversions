@@ -14,15 +14,16 @@ class Interval(NamedTuple):
         else:
             return ''
 
-    def name(self) -> str:
-        return INTERVAL_NAMES[self.interval]
-
     def __str__(self):
         return '{base_note} {name} ({interval})'.format(
             interval=self.interval,
             base_note=self.get_base_note_name(),
             name=self.name
         )
+
+    @property
+    def name(self) -> str:
+        return INTERVAL_NAMES[self.interval]
 
     @property
     def chord(self) -> list[int]:
