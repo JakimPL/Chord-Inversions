@@ -36,10 +36,11 @@ def create_stream(iterable: list[int], tempo: int = TEMPO, sequential: bool = SE
     stream.append(tempo)
     if sequential:
         create_sequence(iterable, stream)
+        add_rest(stream)
     else:
         create_chord(iterable, stream)
+        add_rest(stream, duration='whole')
 
-    add_rest(stream)
     return stream
 
 
